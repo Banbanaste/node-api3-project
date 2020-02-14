@@ -1,20 +1,20 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   // do your magic!
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", validatePostId, (req, res) => {
   // do your magic!
 });
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", validatePostId, (req, res) => {
   // do your magic!
 });
 
-router.put('/:id', (req, res) => {
+router.put("/:id", validatePostId, (req, res) => {
   // do your magic!
 });
 
@@ -22,6 +22,11 @@ router.put('/:id', (req, res) => {
 
 function validatePostId(req, res, next) {
   // do your magic!
+  if (req.params.id) {
+    next();
+  } else {
+    res.status(400).json({ message: "invalid user id" });
+  }
 }
 
 module.exports = router;
